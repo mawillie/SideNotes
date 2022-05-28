@@ -1,0 +1,71 @@
+/* ==== GERAL ======================= */
+
+@font-face {
+  font-family: 'Din';
+  src: url(/assets/fonts/DIN1451-36breit.ttf);
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url(/assets/fonts/Futura\ Condensed\ Light\ Regular.otf);
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Din';
+  font-size: 1.6rem;
+}
+
+/* ==== SITE ======================= */
+
+
+.root {
+  width: 100vw;
+  height: 100vh;
+}
+
+.app {
+  margin: 0 auto;
+  width: 90%;
+  height: 50%;
+  padding: 3rem 4rem;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #111;
+}
+
+/* ==== ASIDE ======================= */
+
+.aside {
+  width: 33rem;
+  padding: 1rem 2rem;
+  background-color: #333;
+  
+  position: fixed;
+}
+
+
+.btn__add {
+  width: 100%;
+  padding: 1rem 0;
+
+  font-weight: 600;
+  font-size: 2rem;
+  color: white;
+  background-color: yellowgreen;
+  border: none;
+  border-radius: .8rem;
+}
