@@ -1,0 +1,8 @@
+* Trocar cores
+* Terminar template de cada Task {
+
+    Arrumar height
+    Espaçamentos
+    Gap entre uma task e outra
+    
+}

@@ -1,10 +1,4 @@
 /* ==== GERAL ======================= */
-
-@font-face {
-  font-family: 'Din';
-  src: url(/assets/fonts/DIN1451-36breit.ttf);
-}
-
 @font-face {
   font-family: 'Futura';
   src: url(/assets/fonts/Futura\ Condensed\ Light\ Regular.otf);
@@ -22,7 +16,7 @@
 }
 
 body {
-  font-family: 'Din';
+  font-family: 'Futura';
   font-size: 1.6rem;
 }
 
@@ -32,40 +26,172 @@ body {
 .root {
   width: 100vw;
   height: 100vh;
+  background-color: #E4E7EF;
+  /* background-color: #111; */
 }
 
 .app {
   margin: 0 auto;
-  width: 90%;
-  height: 50%;
-  padding: 3rem 4rem;
+  max-width: 120rem;
+  height: 90%;
+  padding: 4rem 3rem;
   
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
 
-  background-color: #111;
+
 }
 
 /* ==== ASIDE ======================= */
 
 .aside {
   width: 33rem;
-  padding: 1rem 2rem;
+  padding: 3rem 2rem;
+  margin-bottom: 3rem;
+
   background-color: #333;
-  
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem 0 #111;
+
   position: fixed;
 }
 
+h1 {
+  text-align: center;
+  color: indianred;
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  color: #BBBCBD;
+}
+
+.title__label,
+.notes__label {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.title,
+.notes {
+  font-size: 1.7rem;
+  color: white;
+
+  background-color: transparent;
+
+  outline: none;
+  border: none;
+  border-bottom: 1px solid whitesmoke;
+  margin-bottom: 1.5rem;
+
+  width: 100%;
+  padding: .5rem 0;
+}
+
+.notes{
+  resize: none;
+}
 
 .btn__add {
+  margin-top: 1.3rem;
+  cursor: pointer;
+  
   width: 100%;
   padding: 1rem 0;
+
 
   font-weight: 600;
   font-size: 2rem;
   color: white;
-  background-color: yellowgreen;
+  background-color: indianred;
+
   border: none;
   border-radius: .8rem;
+}
+
+.btn__add:enabled {
+  color: #333;
+  background-color: white;
+}
+
+.filter {
+  margin-top: 1rem;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.fitem {
+  color: white;
+  font-size: 2rem;
+  letter-spacing: .1rem;
+}
+
+
+/* ==== MAIN ======================= */
+
+.main {
+  flex: 1 1;
+  margin-left: 36rem; 
+  background-color: white;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+
+/* ==== TASK ======================= */
+
+
+li {
+  list-style: none;
+}
+
+.task {
+  max-width: 38rem;
+  border-radius: 1rem;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.task__title {
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete {
+  cursor: pointer;
+}
+
+.delete:hover svg {
+  fill: indianred;
+  stroke: indianred;
+}
+
+.task__notes {
+  color: black;
+
+  padding: 1rem;
+  border: none;
+  border-radius: 1rem;
+  margin: 1rem 0;
+}
+
+.task__notes:focus {
+  box-shadow: 0 0 .5rem 0 #333;
+}
+
+.alert {
+  cursor: pointer;
 }
