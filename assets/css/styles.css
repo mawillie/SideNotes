@@ -46,12 +46,12 @@ body {
 
 .aside {
   width: 33rem;
-  padding: 3rem 2rem;
+  padding: 2rem 2rem;
   margin-bottom: 3rem;
 
-  background-color: #333;
+  background-color: white;
   border-radius: 1rem;
-  box-shadow: 0 0 1rem 0 #111;
+  box-shadow: 0 0 1rem 0 rgba(17, 17, 17, 0.342);
 
   position: fixed;
 }
@@ -68,7 +68,7 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: .2rem;
-  color: #BBBCBD;
+  color: #979797;
 }
 
 .title__label,
@@ -79,14 +79,14 @@ h1 {
 
 .title,
 .notes {
-  font-size: 1.7rem;
-  color: white;
+  font-size: 1.5rem;
+  color: #616161;
 
   background-color: transparent;
 
   outline: none;
   border: none;
-  border-bottom: 1px solid whitesmoke;
+  border-bottom: .1rem solid rgb(226, 226, 226);
   margin-bottom: 1.5rem;
 
   width: 100%;
@@ -99,7 +99,7 @@ h1 {
 
 .btn__add {
   margin-top: 1.3rem;
-  cursor: pointer;
+  cursor: no-drop;
   
   width: 100%;
   padding: 1rem 0;
@@ -108,26 +108,26 @@ h1 {
   font-weight: 600;
   font-size: 2rem;
   color: white;
-  background-color: indianred;
+  background-color: #E88F7A;
 
   border: none;
   border-radius: .8rem;
 }
 
 .btn__add:enabled {
-  color: #333;
-  background-color: white;
+  cursor: pointer;
+  background-color: indianred;
 }
 
 .filter {
   margin-top: 1rem;
-  padding: 2rem 0;
+  padding: 2rem 0 .5rem 0;
   display: flex;
   justify-content: space-around;
 }
 
 .fitem {
-  color: white;
+  color: black;
   font-size: 2rem;
   letter-spacing: .1rem;
 }
@@ -138,7 +138,7 @@ h1 {
 .main {
   flex: 1 1;
   margin-left: 36rem; 
-  background-color: white;
+  background-color: transparent;
 }
 
 .list {
@@ -156,12 +156,17 @@ li {
 }
 
 .task {
+  max-height: 22rem;
+  max-width: 32rem;
+  background-color: white;
   max-width: 38rem;
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 2rem 2rem 1rem 2rem;
 
   display: flex;
   flex-direction: column;
+  
+  box-shadow: 0 0 1rem 0 rgba(17, 17, 17, 0.342);
 }
 
 .task__title {
@@ -181,17 +186,37 @@ li {
 
 .task__notes {
   color: black;
+  font-size: 1.5rem;
 
   padding: 1rem;
   border: none;
-  border-radius: 1rem;
+  border-radius: .5rem;
   margin: 1rem 0;
 }
 
 .task__notes:focus {
-  box-shadow: 0 0 .5rem 0 #333;
+  box-shadow: 0 0 .5rem 0 rgba(51, 51, 51, 0.39);
 }
 
 .alert {
+  width: 2rem;
+  height: 2rem;
   cursor: pointer;
 }
+
+/* ==== FILTER TAG ======================= */
+
+.priority {
+  color: white;
+  background-color: indianred;
+}
+
+.priority .task__notes {
+  color: white;
+}
+
+.priority .delete:hover svg {
+  fill: white;
+  stroke: white;
+}
+
