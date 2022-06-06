@@ -1,10 +1,10 @@
 const lista = document.querySelector('.list')
 const btn = document.querySelector('.btn__add')
-const filtro = document.querySelector('input[name="filter"]:checked')
 
 const notes = document.querySelector(".notes");
 const title = document.querySelector(".title");
 
+let filtro = 'all' 
 
 window.addEventListener("click", function (e) {
     const el = e.target;
@@ -24,6 +24,19 @@ window.addEventListener("click", function (e) {
 
         notes.value = ""
         title.value = ""
+    }
+
+    if (el.classList.contains('delete')) {
+        titulo = el.parentNode
+        titulo.parentNode.remove()
+    }
+
+    if (el.classList.contains('fipt')) {
+        if (el.value !== filtro) {
+            filtro = el.value
+            
+        }
+        
     }
 });
 
@@ -82,3 +95,21 @@ return `<li class="task">
             />
         </li>`;
 }
+
+
+function filtraTasks(filtro) {
+    const lista = extraiTasks()
+
+    console.log(lista)
+    
+    for (task of lista) {
+        if (!(task.classList.contains('priority')))
+        console.log(task)
+    }
+}
+
+function extraiTasks() {
+    return document.querySelectorAll('.task')
+}
+
+filtraTasks()

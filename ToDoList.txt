@@ -1,5 +1,5 @@
 
 * Fazer o filtro
-* Apagar Cards
+* LocalStorage
 
 * Responsividade
