@@ -16,6 +16,8 @@
 }
 
 body {
+  background-color: #E4E7EF;
+
   font-family: 'Futura';
   font-size: 1.6rem;
 }
@@ -26,8 +28,6 @@ body {
 .root {
   width: 100vw;
   height: 100vh;
-  background-color: #E4E7EF;
-  /* background-color: #111; */
 }
 
 .app {
@@ -45,7 +45,7 @@ body {
 /* ==== ASIDE ======================= */
 
 .aside {
-  width: 33rem;
+  width: 32rem;
   padding: 2rem 2rem;
   margin-bottom: 3rem;
 
@@ -58,7 +58,7 @@ body {
 
 h1 {
   text-align: center;
-  color: indianred;
+  color: black;
   font-size: 2.4rem;
   font-weight: 600;
   margin-bottom: 2rem;
@@ -98,7 +98,7 @@ h1 {
 }
 
 .btn__add {
-  margin-top: 1.3rem;
+  margin-top: 1.5rem;
   cursor: no-drop;
   
   width: 100%;
@@ -111,7 +111,7 @@ h1 {
   background-color: #E88F7A;
 
   border: none;
-  border-radius: .8rem;
+  border-radius: 1rem;
 }
 
 .btn__add:enabled {
@@ -124,6 +124,8 @@ h1 {
   padding: 2rem 0 .5rem 0;
   display: flex;
   justify-content: space-around;
+  margin-bottom: 2rem;
+
 }
 
 .fitem {
@@ -166,10 +168,10 @@ li {
   display: flex;
   flex-direction: column;
   
-  box-shadow: 0 0 1rem 0 rgba(17, 17, 17, 0.342);
+  box-shadow: 0 0 1rem 0 rgba(17, 17, 17, 0.212);
 }
 
-.task__title {
+.div__title {
   font-size: 2rem;
   display: flex;
   justify-content: space-between;
@@ -220,3 +222,70 @@ li {
   stroke: white;
 }
 
+@media (max-width: 1000px) {
+
+  .root {
+    height: 100%;
+  }
+
+  .app {
+    flex-direction: column;
+  }
+
+  .aside {
+    width: 100%;
+
+    position: static;
+  }
+
+  .filter {
+    justify-content: center;
+    gap: 2.5rem;
+  }
+
+  .main {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .list {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem ;
+  }
+
+  .task {
+    max-width: 100%;
+  }
+
+}
+
+@media (max-width: 600px) {
+  
+  .root {
+    height: 100%;
+  }
+
+  .app {
+    flex-direction: column;
+  }
+
+  .aside {
+    width: 100%;
+
+    position: static;
+  }
+
+  .main {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .list {
+    grid-template-columns: 1fr;
+    gap: 2rem ;
+  }
+
+  .task {
+    max-width: 100%;
+  }
+}

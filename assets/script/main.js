@@ -1,87 +1,137 @@
-const lista = document.querySelector('.list')
-const btn = document.querySelector('.btn__add')
+const lista = document.querySelector(".list");
+const btn = document.querySelector(".btn__add");
 
 const notes = document.querySelector(".notes");
 const title = document.querySelector(".title");
+const all = document.querySelector(".fipt");
 
-let filtro = 'all' 
+let filtro = "all";
+
+/* ==== LOAD EVENT ===================== */
+
+window.addEventListener("DOMContentLoaded", function () {
+    const loadTasks = JSON.parse(localStorage.getItem("savedTasks"))
+
+    if (!loadTasks) {
+        return
+    }
+
+    for (task of loadTasks) {
+        lista.innerHTML += templateTask(task.title, task.notes, task.classe);
+
+    }
+
+});
+
+/* ==== CLICK EVENT ===================== */
 
 window.addEventListener("click", function (e) {
     const el = e.target;
-    
 
     // ALERT PRIORITY
     if (el.classList.contains("alert")) {
-
         el.parentNode.classList.toggle("priority");
+
         switchAlert(el);
+        save()
     }
-    
+
     // BTN ADD
     if (el === btn) {
         e.preventDefault();
-        lista.innerHTML += templateTask(title.value, notes.value)
+        lista.innerHTML += templateTask(title.value, notes.value);
 
-        notes.value = ""
-        title.value = ""
-    }
+        notes.value = "";
+        title.value = "";
+        btnDisable('yes')
 
-    if (el.classList.contains('delete')) {
-        titulo = el.parentNode
-        titulo.parentNode.remove()
-    }
-
-    if (el.classList.contains('fipt')) {
-        if (el.value !== filtro) {
-            filtro = el.value
-            
+        if (filtro !== "all") {
+            all.click();
         }
-        
+
+        save()
+    }
+
+    // BTN DELETE
+    if (el.classList.contains("delete")) {
+        titulo = el.parentNode;
+        titulo.parentNode.remove();
+
+        save()
+    }
+
+    // FILTRO
+    if (el.classList.contains("fipt")) {
+        if (el.value !== filtro) {
+            filtro = el.value;
+            filtraTasks(filtro);
+        }
     }
 });
 
-// BTN ADD ENBALE | DISABLE
-window.addEventListener('keyup', function() {
+/* ==== KEY EVENT ===================== */
 
-    if(title.value.length > 0 && notes.value.length > 0) {
-        btn.removeAttribute("disabled")
+// BTN ADD ENBALE | DISABLE
+window.addEventListener("keyup", function () {
+    if (title.value.length > 0 && notes.value.length > 0) {
+        btnDisable()
     } else {
-        btn.setAttribute("disabled", "")
+        btnDisable('yes')
+    }
+});
+
+/* ==== FUNCTIONS ===================== */
+
+window.addEventListener('change', function(e) {
+    const el = e.target
+
+    console.log(el)
+
+    if (el.classList.contains('task__notes')) {
+        console.log('Funciono')
+        save()
     }
 })
 
 
+/* ==== FUNCTIONS ===================== */
+
 // ICON SWITCH
 function switchAlert(alert) {
+    const remov = alert.parentNode.querySelector('.delete')
 
-    alert.parentNode.classList.contains("priority")
-        ? alert.setAttribute("src", "./assets/images/alert-active.svg")
-        : alert.setAttribute("src", "./assets/images/alert.svg");
+    if (alert.parentNode.classList.contains("priority")) {
+        alert.setAttribute("src", "./assets/images/alert-active.svg")
+        remov.setAttribute('src', "./assets/images/delete-active.svg")
+    }
+    else {
+        alert.setAttribute("src", "./assets/images/alert.svg");
+        remov.setAttribute('src', "./assets/images/delete.svg") 
+    }
+
 }
 
 // TASK TEMPLATE
-const templateTask = function(title, notes) { 
-return `<li class="task">
-            <div class="task__title">
-                <strong>${title}</strong>
-                <div class="delete">
-                    <svg
-                        stroke="#EB8F7A"
-                        fill="#EB8F7A"
-                        stroke-width="0"
-                        viewBox="0 0 1024 1024"
-                        height="20"
-                        width="20"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M292.7 840h438.6l24.2-512h-487z"
-                        ></path>
-                        <path
-                            d="M864 256H736v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zm-504-72h304v72H360v-72zm371.3 656H292.7l-24.2-512h487l-24.2 512z"
-                        ></path>
-                    </svg>
-                </div>
+const templateTask = function (title, notes, classe="task") {
+
+    let alerto = ''
+    let remov = ''
+
+    if (classe === 'task priority') {
+        alerto = './assets/images/alert-active.svg'
+        remov = './assets/images/delete-active.svg'
+    }
+
+    else {
+        alerto = './assets/images/alert.svg'
+        remov = './assets/images/delete.svg'
+    }
+
+
+    return `<li class="${classe}">
+            <div class="div__title">
+                <strong class="task__title">${title}</strong>
+                <img src="${remov}" alt="delete" class="delete">  
             </div>
             <textarea
                 cols="30"
@@ -90,26 +140,60 @@ return `<li class="task">
             >${notes}</textarea>
             <img
                 class="alert"
-                src="./assets/images/alert.svg"
+                src="${alerto}"
                 alt="alert"
             />
         </li>`;
-}
-
+};
 
 function filtraTasks(filtro) {
-    const lista = extraiTasks()
+    const lista = extraiTasks();
 
-    console.log(lista)
-    
-    for (task of lista) {
-        if (!(task.classList.contains('priority')))
-        console.log(task)
+    if (filtro === "normal") {
+        for (task of lista) {
+            task.classList.contains("priority")
+                ? (task.style.display = "none")
+                : (task.style.display = "flex");
+        }
+    } else if (filtro === "priority") {
+        for (task of lista) {
+            task.classList.contains("priority")
+                ? (task.style.display = "flex")
+                : (task.style.display = "none");
+        }
+    } else if (filtro === "all") {
+        for (task of lista) {
+            task.style.display = "flex";
+        }
     }
 }
 
-function extraiTasks() {
-    return document.querySelectorAll('.task')
+function btnDisable(x) {
+    x ? btn.setAttribute("disabled", "") : btn.removeAttribute("disabled");
 }
 
-filtraTasks()
+function extraiTasks() {
+    return document.querySelectorAll(".task");
+}
+
+function save() {
+    const lista = extraiTasks();
+    const array = [];
+
+    for (task of lista) {
+        const title = task.querySelector(".task__title").textContent;
+        const notes = task.querySelector(".task__notes");
+        const classe = task.classList
+
+        array.push({
+            title,
+            notes: notes.value,
+            classe: String(classe.value)
+        });
+    }
+
+    localStorage.setItem('savedTasks', JSON.stringify(array))
+
+    console.log(localStorage.getItem('savedTasks'))
+
+}

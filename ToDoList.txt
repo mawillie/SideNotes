@@ -1,5 +1,0 @@
-
-* Fazer o filtro
-* LocalStorage
-
-* Responsividade
