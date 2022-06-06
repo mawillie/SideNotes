@@ -3,6 +3,12 @@
 
 ---
 
+### :pushpin: Referencia
+
+* [Repositório Original](https://github.com/Wesley-wsl/day-notes)
+
+---
+
 ### :rocket: Tecnologias
 
 - [HTML5](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
